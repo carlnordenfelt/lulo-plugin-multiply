@@ -10,8 +10,8 @@ $ npm install lulo-plugin-mulitply --save
 
 ## Usage
 ### Properties
-* `leftFactor`: The left factor of the multiplication. Required
-* `rightFactor`: The right factor of the multiplication. Required
+* `LeftFactor`: The left factor of the multiplication. Required
+* `RightFactor`: The right factor of the multiplication. Required
 
 ### Return Values
 When the logical ID of this resource is provided to the Ref intrinsic function, Ref returns the product of the factors.

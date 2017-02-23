@@ -5,7 +5,7 @@ It takes two factors, multiplies them and responds with the product.
 
 # Installation
 ```
-$ npm install lulo-plugin-mulitply --save
+$ npm install lulo-plugin-multiply --save
 ```
 
 ## Usage

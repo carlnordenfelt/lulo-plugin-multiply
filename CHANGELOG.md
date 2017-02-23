@@ -1,3 +1,6 @@
+## 1.1.1
+Moved the Product output to Fn::GetAtt to avoid PhysicalResourceId conflicts
+
 ## 1.1.0
 Added optional parameter DecimalPoints
 

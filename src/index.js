@@ -25,14 +25,10 @@ pub.validate = function (event) {
 pub.create = function (event, _context, callback) {
     var product = event.ResourceProperties.LeftFactor * event.ResourceProperties.RightFactor;
     if (event.ResourceProperties.DecimalPoints !== undefined) {
-        //if (event.ResourceProperties.DecimalPoints.toString() === '0') {
-        //    product = Math.round(product);
-        //} else {
         product = product.toFixed(parseInt(event.ResourceProperties.DecimalPoints));
-        //}
     }
     setImmediate(function () {
-        callback(null, { physicalResourceId: parseFloat(product) });
+        callback(null, { Product: parseFloat(product) });
     });
 };
 

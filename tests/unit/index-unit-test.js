@@ -78,7 +78,7 @@ describe('Index unit tests', function () {
         it('should succeed', function (done) {
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(12);
+                expect(response.Product).to.equal(12);
                 done();
             });
         });
@@ -86,7 +86,7 @@ describe('Index unit tests', function () {
             event.ResourceProperties.RightFactor = 2.5;
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(7.5);
+                expect(response.Product).to.equal(7.5);
                 done();
             });
         });
@@ -94,7 +94,7 @@ describe('Index unit tests', function () {
             event.ResourceProperties.DecimalPoints = 0;
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(12);
+                expect(response.Product).to.equal(12);
                 done();
             });
         });
@@ -103,7 +103,7 @@ describe('Index unit tests', function () {
             event.ResourceProperties.DecimalPoints = 0;
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(7);
+                expect(response.Product).to.equal(7);
                 done();
             });
         });
@@ -113,7 +113,7 @@ describe('Index unit tests', function () {
             event.ResourceProperties.DecimalPoints = 4;
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(0.1089);
+                expect(response.Product).to.equal(0.1089);
                 done();
             });
         });
@@ -123,7 +123,7 @@ describe('Index unit tests', function () {
         it('should succeed', function (done) {
             subject.update(event, {}, function (error, response) {
                 expect(error).to.equal(null);
-                expect(response.physicalResourceId).to.equal(12);
+                expect(response.Product).to.equal(12);
                 done();
             });
         });

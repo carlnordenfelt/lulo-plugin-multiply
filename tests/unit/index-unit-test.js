@@ -19,6 +19,11 @@ describe('Index unit tests', function () {
             subject.validate(event);
             done();
         });
+        it('should fail if DecimalPoints is not a number', function (done) {
+            event.ResourceProperties.DecimalPoints = '2';
+            subject.validate(event);
+            done();
+        });
         it('should fail if LeftFactor is not set', function (done) {
             delete event.ResourceProperties.LeftFactor;
             function fn() {
@@ -59,6 +64,14 @@ describe('Index unit tests', function () {
             expect(fn).to.throw(/RightFactor must be a number/);
             done();
         });
+        it('should fail if DecimalPoints is not a number', function (done) {
+            event.ResourceProperties.DecimalPoints = 'ABC';
+            function fn() {
+                subject.validate(event);
+            }
+            expect(fn).to.throw(/DecimalPoints must be an integer/);
+            done();
+        });
     });
 
     describe('create', function () {
@@ -66,6 +79,41 @@ describe('Index unit tests', function () {
             subject.create(event, {}, function (error, response) {
                 expect(error).to.equal(null);
                 expect(response.physicalResourceId).to.equal(12);
+                done();
+            });
+        });
+        it('should multiply floats', function (done) {
+            event.ResourceProperties.RightFactor = 2.5;
+            subject.create(event, {}, function (error, response) {
+                expect(error).to.equal(null);
+                expect(response.physicalResourceId).to.equal(7.5);
+                done();
+            });
+        });
+        it('should return 0 decimal points', function (done) {
+            event.ResourceProperties.DecimalPoints = 0;
+            subject.create(event, {}, function (error, response) {
+                expect(error).to.equal(null);
+                expect(response.physicalResourceId).to.equal(12);
+                done();
+            });
+        });
+        it('should round off float to 0 decimals', function (done) {
+            event.ResourceProperties.RightFactor = 2.33;
+            event.ResourceProperties.DecimalPoints = 0;
+            subject.create(event, {}, function (error, response) {
+                expect(error).to.equal(null);
+                expect(response.physicalResourceId).to.equal(7);
+                done();
+            });
+        });
+        it('should round off float to 4 decimals', function (done) {
+            event.ResourceProperties.LeftFactor = 0.33;
+            event.ResourceProperties.RightFactor = 0.33;
+            event.ResourceProperties.DecimalPoints = 4;
+            subject.create(event, {}, function (error, response) {
+                expect(error).to.equal(null);
+                expect(response.physicalResourceId).to.equal(0.1089);
                 done();
             });
         });

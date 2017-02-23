@@ -15,12 +15,24 @@ pub.validate = function (event) {
     if (!(/^[0-9.]+$/).test(event.ResourceProperties.RightFactor.toString())) {
         throw new Error('RightFactor must be a number');
     }
+    if (event.ResourceProperties.DecimalPoints) {
+        if (!(/^[0-9]+$/).test(event.ResourceProperties.DecimalPoints.toString())) {
+            throw new Error('DecimalPoints must be an integer');
+        }
+    }
 };
 
 pub.create = function (event, _context, callback) {
     var product = event.ResourceProperties.LeftFactor * event.ResourceProperties.RightFactor;
+    if (event.ResourceProperties.DecimalPoints !== undefined) {
+        //if (event.ResourceProperties.DecimalPoints.toString() === '0') {
+        //    product = Math.round(product);
+        //} else {
+        product = product.toFixed(parseInt(event.ResourceProperties.DecimalPoints));
+        //}
+    }
     setImmediate(function () {
-        callback(null, { physicalResourceId: product });
+        callback(null, { physicalResourceId: parseFloat(product) });
     });
 };
 

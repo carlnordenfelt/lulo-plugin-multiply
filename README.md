@@ -12,6 +12,7 @@ $ npm install lulo-plugin-multiply --save
 ### Properties
 * `LeftFactor`: The left factor of the multiplication. Required
 * `RightFactor`: The right factor of the multiplication. Required
+* `DecimalPoints`: The number of decimals to include in the product. Optional. Default is all.
 
 ### Return Values
 When the logical ID of this resource is provided to the Ref intrinsic function, Ref returns the product of the factors.

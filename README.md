@@ -16,9 +16,8 @@ $ npm install lulo-plugin-multiply --save
 
 ### Return Values
 #### Fn::GetAtt
-Product The product
+**Product** The product `Fn::GetAtt["Multiply", "Product"]`
 
-Fn::GetAtt["Multiply", "Product"]
 ### Required IAM Permissions
 The Custom Resource Lambda requires no additional IAM Permissions.
 
